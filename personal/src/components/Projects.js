@@ -116,10 +116,10 @@ export const Projects = () => {
                         <Nav.Link eventKey="first">Our mission</Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
-                        <Nav.Link eventKey="second">Tab 2</Nav.Link>
+                        <Nav.Link eventKey="second">Contact-Us</Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
-                        <Nav.Link eventKey="third">Tab 3</Nav.Link>
+                        <Nav.Link eventKey="third">Vision</Nav.Link>
                       </Nav.Item>
                     </Nav>
                     <Tab.Content
@@ -146,11 +146,13 @@ export const Projects = () => {
                       </Tab.Pane>
                       <Tab.Pane eventKey="third">
                         <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Cumque quam, quod neque provident velit, rem
-                          explicabo excepturi id illo molestiae blanditiis,
-                          eligendi dicta officiis asperiores delectus quasi
-                          inventore debitis quo.
+                          To create a thriving, innovative, and sustainable
+                          agriculture sector in Rwanda, where young
+                          professionals, farmers, and agricultural businesses
+                          work collaboratively to enhance productivity, adopt
+                          modern technologies, and ensure environmental
+                          responsibility for the benefit of current and future
+                          generations.
                         </p>
                       </Tab.Pane>
                     </Tab.Content>
