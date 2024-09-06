@@ -14,6 +14,7 @@ import { Card, Carousel, Col, Row } from "react-bootstrap";
 function Team() {
   return (
     <div>
+      <h1 style={{ textAlign: "center" }}>OurTeam</h1>
       <Carousel indicators={false} interval={3000}>
         <Carousel.Item>
           <Row className="justify-content-center">
