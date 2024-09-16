@@ -12,7 +12,6 @@ export const Banner = () => {
   const [delta, setDelta] = useState(300 - Math.random() * 100);
   const [index, setIndex] = useState(1);
   const toRotate = [
-    "We ARE",
     "PROFESSIONAL AGRICULTURE NETWORK DEVELOPMENT RWANDA",
     "PAN RWANDA",
   ];
@@ -84,7 +83,7 @@ export const Banner = () => {
                     agriculture industry in Rwanda.
                   </p>
                   <button onClick={() => console.log("connect")}>
-                    Let’s Connect <ArrowRightCircle size={25} />
+                    Get started <ArrowRightCircle size={25} />
                   </button>
                 </div>
               )}

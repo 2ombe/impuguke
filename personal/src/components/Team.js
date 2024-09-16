@@ -23,10 +23,10 @@ function Team() {
                 <Card.Img
                   variant="top"
                   src={team1}
-                  style={{ width: "50%", height: "auto", marginLeft: "150px" }}
+                  style={{ width: "100%", height: "auto", objectFit: "cover" }}
                   alt="Team Member 2"
                 />
-                <Card.Body>
+                <Card.Body style={{ color: "black" }}>
                   <Card.Title>Emmanuel Irankunda</Card.Title>
                   <Card.Text>Director and legal Representative</Card.Text>
                 </Card.Body>
@@ -35,12 +35,12 @@ function Team() {
             <Col md={4}>
               <Card className="team-card text-center">
                 <Card.Img
-                  style={{ width: "50%", height: "auto", marginLeft: "150px" }}
+                  style={{ width: "100%", height: "auto", objectFit: "cover" }}
                   variant="top"
                   src={team2}
                   alt="Team Member 1"
                 />
-                <Card.Body>
+                <Card.Body style={{ color: "black" }}>
                   <Card.Title>Hamis Mutsindashyaka</Card.Title>
                   <Card.Text>Deputy legal Representative</Card.Text>
                 </Card.Body>
@@ -53,12 +53,12 @@ function Team() {
             <Col md={4}>
               <Card className="team-card text-center">
                 <Card.Img
-                  style={{ width: "50%", height: "auto", marginLeft: "150px" }}
+                  style={{ width: "100%", height: "auto", objectFit: "cover" }}
                   variant="top"
                   src={team3}
                   alt="Team Member 3"
                 />
-                <Card.Body>
+                <Card.Body style={{ color: "black" }}>
                   <Card.Title>Clarisse Umuhoza</Card.Title>
                   <Card.Text>Secretary</Card.Text>
                 </Card.Body>
@@ -67,12 +67,12 @@ function Team() {
             <Col md={4}>
               <Card className="team-card text-center">
                 <Card.Img
-                  style={{ width: "50%", height: "auto", marginLeft: "150px" }}
+                  style={{ width: "100%", height: "auto", objectFit: "cover" }}
                   variant="top"
                   src={team4}
                   alt="Team Member 4"
                 />
-                <Card.Body>
+                <Card.Body style={{ color: "black" }}>
                   <Card.Title>Emmanuel Hakizimana</Card.Title>
                   <Card.Text>treasurer</Card.Text>
                 </Card.Body>
@@ -85,12 +85,12 @@ function Team() {
             <Col md={4}>
               <Card className="team-card text-center">
                 <Card.Img
-                  style={{ width: "50%", height: "auto", marginLeft: "150px" }}
+                  style={{ width: "100%", height: "auto", objectFit: "cover" }}
                   variant="top"
                   src={team5}
                   alt="Team Member 4"
                 />
-                <Card.Body>
+                <Card.Body style={{ color: "black" }}>
                   <Card.Title>Fidele Nizeyimana</Card.Title>
                   <Card.Text>Member</Card.Text>
                 </Card.Body>
@@ -99,12 +99,12 @@ function Team() {
             <Col md={4}>
               <Card className="team-card text-center">
                 <Card.Img
-                  style={{ width: "50%", height: "auto", marginLeft: "150px" }}
+                  style={{ width: "100%", height: "auto", objectFit: "cover" }}
                   variant="top"
                   src={team6}
                   alt="Team Member 4"
                 />
-                <Card.Body>
+                <Card.Body style={{ color: "black" }}>
                   <Card.Title>Zahara Harerimana</Card.Title>
                   <Card.Text>Member</Card.Text>
                 </Card.Body>
@@ -117,12 +117,12 @@ function Team() {
             <Col md={4}>
               <Card className="team-card text-center">
                 <Card.Img
-                  style={{ width: "50%", height: "auto", marginLeft: "150px" }}
+                  style={{ width: "100%", height: "auto", objectFit: "cover" }}
                   variant="top"
                   src={team7}
                   alt="Team Member 4"
                 />
-                <Card.Body>
+                <Card.Body style={{ color: "black" }}>
                   <Card.Title>Innocent Nziyumvira</Card.Title>
                   <Card.Text>Member and project Finance</Card.Text>
                 </Card.Body>
@@ -131,12 +131,12 @@ function Team() {
             <Col md={4}>
               <Card className="team-card text-center">
                 <Card.Img
-                  style={{ width: "50%", height: "auto", marginLeft: "150px" }}
+                  style={{ width: "100%", height: "auto", objectFit: "cover" }}
                   variant="top"
                   src={team8}
                   alt="Team Member 4"
                 />
-                <Card.Body>
+                <Card.Body style={{ color: "black" }}>
                   <Card.Title>Francine Mukantirenganya</Card.Title>
                   <Card.Text>Member</Card.Text>
                 </Card.Body>
@@ -149,27 +149,27 @@ function Team() {
             <Col md={4}>
               <Card className="team-card text-center">
                 <Card.Img
-                  style={{ width: "50%", height: "auto", marginLeft: "150px" }}
+                  style={{ width: "100%", height: "auto", objectFit: "cover" }}
                   variant="top"
                   src={team9}
                   alt="Team Member 4"
                 />
-                <Card.Body>
-                  <Card.Title>Innocent Nziyumvira</Card.Title>
-                  <Card.Text>Member and project Finance</Card.Text>
+                <Card.Body style={{ color: "black" }}>
+                  <Card.Title>Abel Karamari</Card.Title>
+                  <Card.Text>Member</Card.Text>
                 </Card.Body>
               </Card>
             </Col>
             <Col md={4}>
               <Card className="team-card text-center">
                 <Card.Img
-                  style={{ width: "50%", height: "auto", marginLeft: "150px" }}
+                  style={{ width: "100%", height: "auto", objectFit: "cover" }}
                   variant="top"
                   src={team10}
                   alt="Team Member 4"
                 />
-                <Card.Body>
-                  <Card.Title>Francine Mukantirenganya</Card.Title>
+                <Card.Body style={{ color: "black" }}>
+                  <Card.Title>Sharon Mukandayisenga</Card.Title>
                   <Card.Text>Member</Card.Text>
                 </Card.Body>
               </Card>
