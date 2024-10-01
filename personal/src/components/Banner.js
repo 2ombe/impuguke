@@ -4,8 +4,10 @@ import headerImg from "../assets/img/pan.jpeg";
 import { ArrowRightCircle } from "react-bootstrap-icons";
 import "animate.css";
 import TrackVisibility from "react-on-screen";
+import { useNavigate } from "react-router-dom";
 
 export const Banner = () => {
+  const navigate = useNavigate();
   const [loopNum, setLoopNum] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [text, setText] = useState("");
@@ -76,13 +78,8 @@ export const Banner = () => {
                       <span className="wrap">{text}</span>
                     </span>
                   </h1>
-                  <p>
-                    Our head office is located in Nyarurama Cell, Kigarama
-                    Sector, Kicukiro District, Kigali city. We are dedicated to
-                    improving the competitiveness and viability of the
-                    agriculture industry in Rwanda.
-                  </p>
-                  <button onClick={() => console.log("connect")}>
+                  <p>Imbaraga z'urubyiruko mu buhinzi bukozwe kinyamwuga</p>
+                  <button onClick={() => navigate("/login")}>
                     Get started <ArrowRightCircle size={25} />
                   </button>
                 </div>

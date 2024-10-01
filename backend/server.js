@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
 const authRoutes = require("./routes/authRoutes");
+const employeRoute = require("./routes/employee");
+const trainingRoutes = require("./routes/training");
 const newsRoutes = require("./routes/newsRoutes");
 require("dotenv").config();
 
@@ -19,7 +21,8 @@ mongoose.connect(process.env.MONGO_URI, {
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/news", newsRoutes);
-
+app.use("/api/employee", isAuth, employeRoute);
+app.use("/api/training", isAuth, trainingRoutes);
 app.use(express.static(path.join(path.resolve(), "/personal/build")));
 app.get("*", (req, res) => {
   res.sendFile(path.join(path.resolve(), "/personal/build/index.html"));

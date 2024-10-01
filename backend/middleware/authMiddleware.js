@@ -1,23 +1,39 @@
 const jwt = require("jsonwebtoken");
-const User = require("../models/Users");
 
-const protect = async (req, res, next) => {
-  let token;
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith("Bearer")
-  ) {
-    try {
-      token = req.headers.authorization.split(" ")[1];
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      req.user = await User.findById(decoded.id).select("-password");
-      next();
-    } catch (error) {
-      res.status(401).json({ error: "Not authorized, token failed" });
+const generateToken = (user) => {
+  return jwt.sign(
+    {
+      _id: (user = user._id),
+      username: user._username,
+      phoneNumber: user.phoneNumber,
+      email: user.email,
+      password: user.password,
+    },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: "8h",
     }
+  );
+};
+
+const isAuth = (req, res, next) => {
+  const authorization = req.headers.authorization;
+  if (authorization) {
+    const token = authorization.slice(7, authorization.length);
+    jwt.verify(token, process.env.JWT_SECRET, (err, decode) => {
+      if (err) {
+        res.status(401).send({ message: "Not authorised" });
+      } else {
+        req.user = decode;
+        next();
+      }
+    });
   } else {
-    res.status(401).json({ error: "Not authorized, no token" });
+    res.status(401).send({ message: "wrong username or password" });
   }
 };
 
-module.exports = protect;
+module.exports = {
+  generateToken,
+  isAuth,
+};
