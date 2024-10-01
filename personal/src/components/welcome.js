@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./welcome.css";
 import { Container } from "react-bootstrap";
 import TrainingPrograms from "./TrainingProgramList";
