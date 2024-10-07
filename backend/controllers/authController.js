@@ -1,5 +1,6 @@
 const { generateToken } = require("../middleware/authMiddleware");
 const User = require("../models/Users");
+const bcrypt = require("bcryptjs");
 
 exports.register = async (req, res) => {
   const { username, email, phoneNumber, password, degree } = req.body;
