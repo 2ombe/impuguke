@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
-import { AuthContext } from "../context/AuthContext";
+import { Store } from "../assets/context/AuthContext";
 
 const UploadNews = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const { user } = useContext(AuthContext);
+  const { user } = useContext(Store);
 
   const uploadNews = async (e) => {
     e.preventDefault();
