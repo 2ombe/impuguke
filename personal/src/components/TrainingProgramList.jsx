@@ -41,7 +41,7 @@ const currentTraining=trainingPrograms[currentIndex]
   return (
     <div>
       {message && <Alert variant="danger">{message}</Alert>}
-      {trainingPrograms.length > 0 && (
+      {trainingPrograms.length > 0 ? (
         <Card>
           <Card.Header>
           <h2 style={{ textAlign: 'center' }}>Training Programs</h2>
@@ -72,6 +72,8 @@ const currentTraining=trainingPrograms[currentIndex]
             }} onClick={()=>navigate(`/training/${currentTraining._id}`)}>Take training</Button>
           </Card.Footer>
         </Card>
+      ):(
+        <Button onClick={()=>navigate("/training")}>Add training program</Button>
       )}
     </div>
   );

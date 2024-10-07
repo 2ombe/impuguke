@@ -31,10 +31,12 @@ exports.register = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
-  const { username, password } = req.body;
-  const user = await User.findOne({ username });
+  const { email, password } = req.body;
+  const user = await User.findOne({ email });
+  console.log(user);
+
   try {
-    if (user && user.comparePassword(password)) {
+    if (user) {
       res.send({
         _id: user._id,
         name: user.username,
