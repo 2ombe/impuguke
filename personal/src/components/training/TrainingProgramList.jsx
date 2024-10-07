@@ -2,8 +2,9 @@
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import {  Card, Alert, Button } from 'react-bootstrap';
-import { Store } from '../../Store';
 import { useNavigate } from 'react-router-dom';
+import { Store } from '../../assets/context/AuthContext';
+
 
 const TrainingPrograms = () => {
   const navigate = useNavigate()

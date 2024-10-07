@@ -1,5 +1,5 @@
 import React from "react";
-import "./welcome.css";
+// import "./welcome.css";
 import { Container } from "react-bootstrap";
 import TrainingPrograms from "./TrainingProgramList";
 
