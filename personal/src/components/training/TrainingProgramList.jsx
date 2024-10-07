@@ -12,6 +12,7 @@ const TrainingPrograms = () => {
   const [trainingPrograms, setTrainingPrograms] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [message, setMessage] = useState('');
+console.log(trainingPrograms);
 
   const fetchTrainingPrograms = async () => {
     try {

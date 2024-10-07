@@ -4,7 +4,8 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/esm/Button";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Store } from "../context/AuthContext";
+import { Store } from "../assets/context/AuthContext";
+
 
 function Login() {
   const navigate = useNavigate();

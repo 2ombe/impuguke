@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/esm/Button";
 import { Link, useNavigate } from "react-router-dom";
 import Axios from "axios";
-import { Store } from "../context/AuthContext";
+import { Store } from "../assets/context/AuthContext";
 
 export default function SignupScreen() {
   const navigate = useNavigate();
