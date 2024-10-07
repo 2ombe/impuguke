@@ -78,9 +78,9 @@ export default function SignupScreen() {
         <div className="mb-3">
           <Button type="submit">Sign Up</Button>
         </div>
-        <div className="mb-3">
+        {/* <div className="mb-3">
           Already have an account <Link to={`/login`}>Login</Link>
-        </div>
+        </div> */}
       </Form>
     </Container>
   );

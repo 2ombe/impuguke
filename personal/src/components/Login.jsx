@@ -53,10 +53,10 @@ function Login() {
         <div className="mb-3">
           <Button type="submit">Sign In</Button>
         </div>
-        <div className="mb-3">
+        {/* <div className="mb-3">
           New customer?{" "}
           <Link to={`/signup`}>Create your acount</Link>
-        </div>
+        </div> */}
       </Form>
     </Container>
   );
