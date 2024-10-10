@@ -11,7 +11,7 @@ const trainingProgramSchema = new mongoose.Schema({
   status: { type: String, enum: ["active", "inactive"], default: "active" },
   done: {
     type: String,
-    enum: ["In progress", "Complted", "Not taken"],
+    enum: ["In progress", "Completed", "Not taken"],
     default: "In progress",
   },
 });

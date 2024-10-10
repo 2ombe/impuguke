@@ -1,4 +1,3 @@
-// models/trainee.js
 
 const mongoose = require("mongoose");
 

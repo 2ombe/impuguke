@@ -45,8 +45,6 @@ const SingleTrainingProgram = () => {
       setError("Error unrolling from training");
     }
   };
-  console.log(id);
-  
 // delete training
 const handleDeleteTraining=async()=>{
   try {
