@@ -5,6 +5,7 @@ const path = require("path");
 const authRoutes = require("./routes/authRoutes");
 const trainingRoutes = require("./routes/training");
 const newsRoutes = require("./routes/newsRoutes");
+const traineeRoutes = require("./routes/traineeRoutes");
 const { isAuth } = require("./middleware/authMiddleware");
 require("dotenv").config();
 
@@ -22,11 +23,12 @@ mongoose.connect(process.env.MONGO_URI, {
 app.use("/api/auth", authRoutes);
 app.use("/api/news", newsRoutes);
 app.use("/api/training", isAuth, trainingRoutes);
+app.use("/api/trainees", isAuth, traineeRoutes);
 
-app.use(express.static(path.join(path.resolve(), "/personal/build")));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(path.resolve(), "/personal/build/index.html"));
-});
+// app.use(express.static(path.join(path.resolve(), "/personal/build")));
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(path.resolve(), "/personal/build/index.html"));
+// });
 
 const PORT = process.env.PORT || 8000;
 

@@ -1,23 +1,32 @@
 import "./App.css";
 import { useState, useEffect, useContext } from "react";
-import { Navbar, Nav, Container } from "react-bootstrap";
+import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import navIcon1 from "./assets/img/nav-icon1.svg";
 import navIcon2 from "./assets/img/nav-icon2.svg";
 import navIcon3 from "./assets/img/nav-icon3.svg";
 import { HashLink } from "react-router-hash-link";
-import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import { Routes, Route, BrowserRouter as Router, Link } from "react-router-dom";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import SignupScreen from "./components/SignupScreen";
 import Welcome from "./components/welcome";
 import OfferTrainingProgramForm from "./components/OfferTrainingProgramForm";
+import SingleTrainingProgram from "./components/training/SingleTrainingProgram";
+import TraineeManagement from "./components/TraineeManagement/TraineeManagement";
 import { Store } from "./assets/context/AuthContext";
 
 function App() {
-  const { state } = useContext(Store);
-  const { userInfo } = state;
   const [activeLink, setActiveLink] = useState("home");
   const [scrolled, setScrolled] = useState(false);
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { userInfo } = state;
+
+  const signoutHandler = () => {
+    ctxDispatch({ type: "LOGOUT" });
+    localStorage.removeItem("userInfo");
+    window.location.href = "/";
+  };
 
   useEffect(() => {
     const onScroll = () => {
@@ -40,7 +49,7 @@ function App() {
     <>
       <div className="App">
         <Router>
-          {!userInfo && (
+          {!userInfo || userInfo === null ? (
             <Navbar expand="md" className={scrolled ? "scrolled" : ""}>
               <Container>
                 <Navbar.Toggle aria-controls="basic-navbar-nav">
@@ -82,6 +91,7 @@ function App() {
                       Projects
                     </Nav.Link>
                   </Nav>
+
                   <span className="navbar-text">
                     <div className="social-icon">
                       <a href="#">
@@ -103,24 +113,62 @@ function App() {
                 </Navbar.Collapse>
               </Container>
             </Navbar>
+          ) : (
+            <Navbar
+              style={{
+                backgroundColor: " rgb(2, 24, 2)",
+              }}
+              variant="dark"
+              expand="lg"
+            >
+              <Container>
+                <LinkContainer to="/">
+                  <Navbar.Brand>
+                    <img
+                      src="/logo.png"
+                      width={40}
+                      height={40}
+                      style={{ borderRadius: "50%" }}
+                      alt="logo"
+                    />
+                  </Navbar.Brand>
+                </LinkContainer>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                  <Nav className="me-auto w-100 justify-content-end ">
+                    <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
+                      <LinkContainer to="/profile">
+                        <NavDropdown.Item>User Profile</NavDropdown.Item>
+                      </LinkContainer>
+                      <NavDropdown.Divider />
+                      <Link
+                        className="dropdown-item"
+                        to="#signout"
+                        onClick={signoutHandler}
+                      >
+                        Sign Out
+                      </Link>
+                    </NavDropdown>
+                  </Nav>
+                </Navbar.Collapse>
+              </Container>
+            </Navbar>
           )}
           <Routes>
-            {!userInfo ? (
-              <>
-                <Route exact path="/login" element={<Login />} />
-                <Route exact path="/" element={<Home />} />
-              </>
-            ) : (
-              <>
-                <Route exact path="/signup" element={<SignupScreen />} />
-                <Route exact path="/welcome" element={<Welcome />} />
-              </>
-            )}
-
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/login" element={<Login />} />
+            <Route exact path="/signup" element={<SignupScreen />} />
+            <Route exact path="/welcome" element={<Welcome />} />
+            <Route exact path="/trainees" element={<TraineeManagement />} />
             <Route
               exact
               path="/training"
               element={<OfferTrainingProgramForm />}
+            />
+            <Route
+              exact
+              path="/training/:id"
+              element={<SingleTrainingProgram />}
             />
           </Routes>
         </Router>

@@ -1,12 +1,12 @@
 // components/TrainingPrograms.js
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
-import {  Card, Alert, Button } from 'react-bootstrap';
+import { Card, Alert, Button, Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { Store } from '../assets/context/AuthContext';
 
 const TrainingPrograms = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { state } = useContext(Store);
   const [trainingPrograms, setTrainingPrograms] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -29,53 +29,68 @@ const TrainingPrograms = () => {
   }, [state]);
 
   useEffect(() => {
-    if(trainingPrograms.length>0){
-
+    if (trainingPrograms.length > 0) {
       const interval = setInterval(() => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % trainingPrograms.length);
       }, 5000);
       return () => clearInterval(interval);
     }
   }, [trainingPrograms]);
-const currentTraining=trainingPrograms[currentIndex]
-  return (
-    <div>
-      {message && <Alert variant="danger">{message}</Alert>}
-      {trainingPrograms.length > 0 ? (
-        <Card>
-          <Card.Header>
-          <h2 style={{ textAlign: 'center' }}>Training Programs</h2>
 
+  const currentTraining = trainingPrograms.length > 0 ? trainingPrograms[currentIndex] : null;
+
+  return (
+    <Container className='small-container' style={{marginTop:"100px"}}>
+      {message && <Alert variant="danger">{message}</Alert>}
+      {trainingPrograms.length > 0 && currentTraining ? (
+       <>
+        <Card style={{color:"black"}}>
+          <Card.Header>
+            <h2 style={{ textAlign: 'center', color:"black" }}>Training Programs</h2>
           </Card.Header>
-          <Card.Img variant="top" src={currentTraining.image} />
+          {currentTraining.image && (
+            <Card.Img variant="top" src={currentTraining.image} alt={currentTraining.title} />
+          )}
           <Card.Body>
             <Card.Title>{currentTraining.title}</Card.Title>
-            <Card.Text>{currentTraining.description}</Card.Text>
-            <Card.Text>
-              <strong>Organisation:</strong> {currentTraining.organisation}
-            </Card.Text>
+            <Card.Text>{currentTraining.description}</Card.Text>     
             <Card.Text>
               <strong>Duration:</strong> {currentTraining.duration}
             </Card.Text>
             <Card.Text>
               <strong>Status:</strong> {currentTraining.status}
             </Card.Text>
-            <Card.Text>
-              <strong>Progress:</strong> {currentTraining.done}
-            </Card.Text>
           </Card.Body>
-          <Card.Footer>
-          <Button style={{
-        marginTop:"-2px",
-              backgroundColor: "#1c698d",
-              margin: "1rem",
-            }} onClick={()=>navigate(`/training/${currentTraining._id}`)}>Take training</Button>
+          <Card.Footer style={{ display: 'flex', justifyContent: 'center' }}>
+            <div style={{display:"flex"}}>
+
+            <Button
+              style={{
+                backgroundColor: '#1c698d',
+                margin: '1rem',
+              }}
+              onClick={() => navigate(`/training/${currentTraining._id}`)}
+            >
+              Take training
+            </Button>
+        
+          <Button style={{backgroundColor: '#1c698d',
+                margin: '1rem',}} onClick={() => navigate('/training')}>Add training program</Button>
+            </div>
+
           </Card.Footer>
         </Card>
-      ):(
-        <Button onClick={()=>navigate("/training")}>Add training program</Button>
+       
+       </>
+       
+     
+
+      ) : (
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+          <Button onClick={() => navigate('/training')}>Add training program</Button>
+        </div>
       )}
-    </div>
+    </Container>
   );
 };
 

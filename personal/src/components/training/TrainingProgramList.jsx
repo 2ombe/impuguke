@@ -1,7 +1,7 @@
 // components/TrainingPrograms.js
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
-import {  Card, Alert, Button } from 'react-bootstrap';
+import {  Card, Alert, Button, Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { Store } from '../../assets/context/AuthContext';
 
@@ -12,7 +12,7 @@ const TrainingPrograms = () => {
   const [trainingPrograms, setTrainingPrograms] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [message, setMessage] = useState('');
-console.log(trainingPrograms);
+
 
   const fetchTrainingPrograms = async () => {
     try {
@@ -41,12 +41,12 @@ console.log(trainingPrograms);
   }, [trainingPrograms]);
 const currentTraining=trainingPrograms[currentIndex]
   return (
-    <div>
+    <Container className='small-container' style={{marginTop:"150px"}}>
       {message && <Alert variant="danger">{message}</Alert>}
       {trainingPrograms.length > 0 && (
-        <Card>
+        <Card >
           <Card.Header>
-          <h2 style={{ textAlign: 'center' }}>Training Programs</h2>
+          <h2 style={{ textAlign: 'center', color:"black" }}>Training Programs</h2>
 
           </Card.Header>
           <Card.Img variant="top" src={currentTraining.image} />
@@ -67,15 +67,20 @@ const currentTraining=trainingPrograms[currentIndex]
             </Card.Text>
           </Card.Body>
           <Card.Footer>
-          <Button style={{
-        marginTop:"-2px",
-              backgroundColor: "#1c698d",
-              margin: "1rem",
-            }} onClick={()=>navigate(`/training/${currentTraining._id}`)}>Take training</Button>
+            {currentTraining.status==="In progress"?(
+
+              <Button style={{
+            marginTop:"-2px",
+                  backgroundColor: "#1c698d",
+                  margin: "1rem",
+                }} onClick={()=>navigate(`/training/${currentTraining._id}`)}>Take training</Button>
+            ):(
+              <h4 style={{color:"red"}}>Closed</h4>
+            )}
           </Card.Footer>
         </Card>
       )}
-    </div>
+    </Container>
   );
 };
 

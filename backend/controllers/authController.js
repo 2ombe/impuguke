@@ -3,7 +3,7 @@ const User = require("../models/Users");
 const bcrypt = require("bcryptjs");
 
 exports.register = async (req, res) => {
-  const { username, email, phoneNumber, password, degree } = req.body;
+  const { username, email, isAdmin, password } = req.body;
 
   try {
     const existingUser = await User.findOne({ $or: [{ username }, { email }] });
@@ -18,8 +18,7 @@ exports.register = async (req, res) => {
     const newUser = new User({
       username,
       email,
-      phoneNumber,
-      degree,
+      isAdmin,
       password: hashedPassword,
     });
     await newUser.save();

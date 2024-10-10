@@ -1,4 +1,3 @@
-const EmployeeTraining = require("../models/employeeTraining");
 const TrainingProgram = require("../models/training");
 
 // Offer a new training program
@@ -26,19 +25,19 @@ exports.offerTrainingProgram = async (req, res) => {
 
 // Enroll an employee in a training program
 exports.enrollEmployeeInTraining = async (req, res) => {
-  const { employeeId, trainingProgramId } = req.body;
+  const { trainingProgramId } = req.body;
 
   try {
-    const employeeTraining = new EmployeeTraining({
+    const TrainingProgram = new TrainingProgram({
       employee: employeeId,
       trainingProgram: trainingProgramId,
     });
 
-    await employeeTraining.save();
+    await TrainingProgram.save();
 
     res.json({
       message: "Employee enrolled in training program successfully",
-      employeeTraining,
+      TrainingProgram,
     });
   } catch (error) {
     console.error(error);
@@ -58,26 +57,14 @@ exports.getAllTrainingPrograms = async (req, res) => {
   }
 };
 
-// Get all training programs for a specific employee
-exports.getTrainingProgramsForEmployee = async (req, res) => {
-  const employeeId = req.params.employeeId;
-
-  try {
-    const employeeTrainings = await EmployeeTraining.find({
-      employee: employeeId,
-    }).populate("trainingProgram");
-
-    res.json({ employeeTrainings });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal server error" });
-  }
-};
-
 exports.getTrainingProgramsById = async (req, res) => {
   const trainingId = req.params;
+  console.log(trainingId.id);
+
   try {
-    const training = await EmployeeTraining.findById(trainingId);
+    const training = await TrainingProgram.findById(trainingId.id);
+    console.log(training);
+
     res.status(200).json(training);
   } catch (error) {
     console.log(error);
@@ -89,7 +76,7 @@ exports.completeTrainingProgram = async (req, res) => {
   const trainingId = req.params.trainingId;
 
   try {
-    const employeeTraining = await EmployeeTraining.findByIdAndUpdate(
+    const TrainingProgram = await TrainingProgram.findByIdAndUpdate(
       trainingId,
       {
         completionStatus: "completed",
@@ -98,16 +85,27 @@ exports.completeTrainingProgram = async (req, res) => {
       { new: true }
     );
 
-    if (!employeeTraining) {
+    if (!TrainingProgram) {
       return res.status(404).json({ message: "Employee training not found" });
     }
 
     res.json({
       message: "Training program completed successfully",
-      employeeTraining,
+      TrainingProgram,
     });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
+  }
+};
+exports.deleteTraining = async (req, res) => {
+  const trainingId = req.params.id;
+  console.log(trainingId);
+
+  try {
+    const training = await TrainingProgram.findByIdAndDelete(trainingId);
+    res.status(200).json({ message: "Training deleted successfully" });
+  } catch (error) {
+    console.log(error);
   }
 };

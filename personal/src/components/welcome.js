@@ -2,6 +2,7 @@ import React from "react";
 // import "./welcome.css";
 import { Container } from "react-bootstrap";
 import TrainingPrograms from "./TrainingProgramList";
+import TraineeList from "./TraineeManagement/TraineeList";
 
 function Welcome() {
   return (
@@ -11,6 +12,7 @@ function Welcome() {
           <div style={{ display: "flex" }}>
             <Container>
               <TrainingPrograms />
+              <TraineeList />
             </Container>
           </div>
         </div>
