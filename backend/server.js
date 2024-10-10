@@ -25,10 +25,10 @@ app.use("/api/news", newsRoutes);
 app.use("/api/training", isAuth, trainingRoutes);
 app.use("/api/trainees", isAuth, traineeRoutes);
 
-// app.use(express.static(path.join(path.resolve(), "/personal/build")));
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(path.resolve(), "/personal/build/index.html"));
-// });
+app.use(express.static(path.join(path.resolve(), "/personal/build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(path.resolve(), "/personal/build/index.html"));
+});
 
 const PORT = process.env.PORT || 8000;
 
