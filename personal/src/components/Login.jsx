@@ -14,20 +14,19 @@ function Login() {
   const {  dispatch: ctxDispatch } = useContext(Store);
 
   const submitHandler = async (e) => {
-    e.preventDefault();
-    try {
-      const { data } = await axios.post("/api/auth/login", {
-        email,
-        password,
-      });
-      ctxDispatch({ type: "USER_SIGNIN", payload: data });
-      localStorage.setItem("userInfo", JSON.stringify(data));
-     navigate("/welcome")
-    } catch (err) {
-      console.log(err);
-      
-    }
-  };
+  e.preventDefault();
+  try {
+    const { data } = await axios.post("/api/auth/login", {
+      email,
+      password,
+    });
+    ctxDispatch({ type: "LOGIN", payload: data }); // Use "LOGIN" here
+    localStorage.setItem("userInfo", JSON.stringify(data));
+    navigate("/welcome");
+  } catch (err) {
+    console.log(err);
+  }
+};
 
   return (
     <Container className="small-container">

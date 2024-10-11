@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import navIcon1 from "./assets/img/nav-icon1.svg";
-import navIcon2 from "./assets/img/nav-icon2.svg";
+import { FaXTwitter } from "react-icons/fa6";
 import navIcon3 from "./assets/img/nav-icon3.svg";
 import { HashLink } from "react-router-hash-link";
 import { Routes, Route, BrowserRouter as Router, Link } from "react-router-dom";
@@ -15,6 +15,7 @@ import OfferTrainingProgramForm from "./components/OfferTrainingProgramForm";
 import SingleTrainingProgram from "./components/training/SingleTrainingProgram";
 import TraineeManagement from "./components/TraineeManagement/TraineeManagement";
 import { Store } from "./assets/context/AuthContext";
+import CreateNews from "./components/news/CreateNews";
 
 function App() {
   const [activeLink, setActiveLink] = useState("home");
@@ -94,15 +95,15 @@ function App() {
 
                   <span className="navbar-text">
                     <div className="social-icon">
-                      <a href="#">
-                        <img src={navIcon1} alt="" />
-                      </a>
-                      <a href="#">
-                        <img src={navIcon2} alt="" />
-                      </a>
-                      <a href="#">
-                        <img src={navIcon3} alt="" />
-                      </a>
+                      <Link to="https://www.linkedin.com/in/pan-rwanda/">
+                        <img src={navIcon1} alt="Icon" />
+                      </Link>
+                      <Link to="https://x.com/PanRwanda">
+                        <FaXTwitter color="white" />
+                      </Link>
+                      <Link to="https://www.instagram.com/panrwanda/">
+                        <img src={navIcon3} alt="Icon" />
+                      </Link>
                     </div>
                     <HashLink to="#connect">
                       <button className="vvd">
@@ -159,6 +160,7 @@ function App() {
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/signup" element={<SignupScreen />} />
             <Route exact path="/welcome" element={<Welcome />} />
+            <Route exact path="/news" element={<CreateNews />} />
             <Route exact path="/trainees" element={<TraineeManagement />} />
             <Route
               exact
