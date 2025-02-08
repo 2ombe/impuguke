@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Card,  Button } from 'react-bootstrap';
+import { Card, Button, Row, Col, Carousel } from 'react-bootstrap';
 import axios from 'axios';
 
 const NewsFeed = () => {
   const [news, setNews] = useState([]);
-
-  // Fetch all news articles from the server
   const fetchNews = async () => {
     try {
       const response = await axios.get('/api/news');
@@ -15,50 +13,91 @@ const NewsFeed = () => {
     }
   };
 
-  // Fetch news on component mount
   useEffect(() => {
     fetchNews();
   }, []);
 
   return (
-    <div style={{backgroundColor:"#011403"}} >
-     
+    <div style={{  margin:"2rem" }}>
+      <Row>
       
-      <div>
-        {news.map((article) => (
+        <Col md={6}>
          
-            <Card style={{border: "1px  #ddd",
-  padding: "10px",
-  
-  marginRight:"2rem",
-webkitBoxShadow: "-22px 19px 11px -1px rgba(0, 0, 0, 0.39)",
-mozBoxShadow: "-22px 19px 11px -1px rgba(0, 0, 0, 0.39)",
-boxShadow: "-22px 19px 11px -1px rgba(0, 0, 0, 0.39)",
-borderRadius: "10px",
-width: "100%",
-height: "200px",
-  backgroundColor: "#011403"}}>
-              <Card.Body>
-                <Card.Title style={{ fontSize: '1.5rem', textAlign:"center", fontFamily: 'Georgia, serif', fontWeight: 'bold' }}>
-                  {article.title}
-                </Card.Title>
-                <Card.Text as="div" style={{fontFamily:"Times New Roman serif",lineHeight: "1.6",textAlign: "justify"}}>
-                  {article.content.split('\n').map((paragraph, idx) => (
-                    <p key={idx} style={{ textAlign: 'justify', fontFamily: 'Times New Roman, serif', lineHeight: '1.6' }}>
-                      {paragraph}
-                    </p>
-                  ))}
-                </Card.Text>
-              </Card.Body>
-              <Card.Footer className="text-muted" style={{ fontFamily: 'Arial, sans-serif', fontStyle: 'italic' }}>
-                By: {article.author?.username || 'Unknown'} | {new Date(article.date).toLocaleDateString()}
-              </Card.Footer>
-            </Card>
-          
-        ))}
-      </div>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <iframe
+              width="80%"
+              height="415"
+              src="https://www.youtube.com/embed/lnH3byiUi8I"
+              title="Pan Rwanda"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              style={{ borderRadius: '10px', boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.5)' }}
+            ></iframe>
+          </div>
+        </Col>
 
-      {/* Button to refresh news */}
+        <Col md={6}>
+          <Carousel indicators={false} interval={3000} fade>
+            {news.map((article) => (
+              <Carousel.Item key={article.id}>
+              <Card
+                key={article.id}
+                style={{
+                    width: '80%',
+                    height: '415px',
+                    border: '1px solid #ddd',
+                    borderRadius: '10px',
+                    backgroundColor: '#f8f9fa',
+                    boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.5)',
+                  }}
+              >
+                 <Card.Body>
+                    <Card.Title
+                      style={{
+                        fontSize: '1.5rem',
+                        textAlign: 'center',
+                        fontFamily: 'Georgia, serif',
+                        fontWeight: 'bold',
+                      }}
+                    >
+                      {article.title}
+                    </Card.Title>
+                    <Card.Text
+                      as="div"
+                      style={{
+                        fontFamily: 'Times New Roman, serif',
+                        lineHeight: '1.6',
+                        textAlign: 'justify',
+                        maxHeight: '250px',
+                        overflowY: 'auto',
+                        paddingRight: '10px',
+                      }}
+                    >
+                      {article.content.split('\n').map((paragraph, idx) => (
+                        <p key={idx}>{paragraph}</p>
+                      ))}
+                    </Card.Text>
+                  </Card.Body>
+                <Card.Footer
+                    className="text-muted"
+                    style={{
+                      fontFamily: 'Arial, sans-serif',
+                      fontStyle: 'italic',
+                      color: '#333',
+                      textAlign: 'center',
+                    }}
+                  >
+                    By: {article.author?.username || 'Unknown'} |{' '}
+                    {new Date(article.date).toLocaleDateString()}
+                  </Card.Footer>
+              </Card>
+              </Carousel.Item>
+            ))}
+          </Carousel>
+        </Col>
+      </Row>
+
       <div className="text-center mt-4">
         <Button variant="primary" onClick={fetchNews}>
           Refresh News
